@@ -1,6 +1,6 @@
-<script setup>
+<script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { io } from 'socket.io-client'
+//import { io } from 'socket.io-client'
 
 const currentTime = ref('')
 
@@ -10,20 +10,20 @@ const updateTime = () => {
   currentTime.value = new Date().toLocaleString()
 }
 
-const socket = io('http://localhost:3000')
+//const socket = io('http://localhost:3000')
 
 onMounted(() => {
   updateTime()
   setInterval(updateTime, 1000)
 
-  socket.on('activeSessions', (count) => {
-    activeSessions.value = count
-  })
+  //socket.on('activeSessions', (count) => {
+  //  activeSessions.value = count
+  //})
 })
 
-onUnmounted(() => {
-  socket.disconnect()
-})
+//onUnmounted(() => {
+//  socket.disconnect()
+//})
 </script>
 
 <template>
