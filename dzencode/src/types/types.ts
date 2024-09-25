@@ -33,6 +33,7 @@ export interface Order {
 
 export interface State {
   orders: Order[]
+  products: Product[]
   selectedOrder: Order | null
   deleteConfirmation: Order | null
 }

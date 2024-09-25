@@ -60,8 +60,9 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
         <img src="../assets/icon/list-task.svg" alt="list-icon" />
       </div>
       <div class="order__products-length">
-        <span>{{ order.products.length }}</span><br />
-        <span>products</span>
+        <span>{{ order.products.length }}</span
+        ><br />
+        <span>{{ $t('product') }}</span>
       </div>
     </div>
     <div class="order__date">
@@ -100,7 +101,7 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
 .order--short {
   justify-content: start;
   gap: 20px;
-  width: 200px;
+  width: 220px;
 }
 
 .order:hover {

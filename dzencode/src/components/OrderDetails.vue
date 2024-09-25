@@ -36,8 +36,7 @@ function setPlaceholder(event: Event) {
           />
         </div>
         <div class="order-details__product-title">
-          <span>{{ product.title }}</span
-          ><br />
+          <span>{{ product.title }}</span>
           <span class="order-details__product-serial">{{ product.serialNumber }}</span>
         </div>
         <div class="order-details__product-price">
@@ -67,7 +66,8 @@ function setPlaceholder(event: Event) {
   border-radius: 6px;
   position: relative;
   border: 1px solid #ddd;
-  margin-top: 16px;
+  z-index: 5;
+  height: 100%;
 }
 
 .order-details__title {
@@ -77,6 +77,8 @@ function setPlaceholder(event: Event) {
 }
 
 .order-details__product-title {
+  display: flex;
+  flex-direction: column;
   font-size: 0.9rem;
 }
 
@@ -101,6 +103,7 @@ function setPlaceholder(event: Event) {
 }
 
 .order-details__add-product {
+  margin: 10px;
   margin-left: 15px;
   display: flex;
   gap: 8px;
@@ -122,13 +125,12 @@ function setPlaceholder(event: Event) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
   border-top: 1px solid #ddd;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
-  padding: 10px;
-  height: 30px;
+  min-height: 50px;
 }
 
 .order-details__product-item:nth-last-child(1) {

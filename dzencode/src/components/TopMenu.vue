@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-//import { io } from 'socket.io-client'
+import { io } from 'socket.io-client'
 
 const currentTime = ref('')
 
@@ -10,45 +10,76 @@ const updateTime = () => {
   currentTime.value = new Date().toLocaleString()
 }
 
-//const socket = io('http://localhost:3000')
+const socket = io('http://localhost:3000')
 
 onMounted(() => {
   updateTime()
   setInterval(updateTime, 1000)
 
-  //socket.on('activeSessions', (count) => {
-  //  activeSessions.value = count
-  //})
+  socket.on('activeSessions', (count) => {
+    activeSessions.value = count
+  })
 })
 
-//onUnmounted(() => {
-//  socket.disconnect()
-//})
+onUnmounted(() => {
+  socket.disconnect()
+})
 </script>
 
 <template>
-  <div class="top-menu">
+  <header class="top-menu">
+    <div class="top-menu__logotype">Logotype</div>
+    <div class="top-menu__input">
+      <input class="top-menu__input-item" type="text" :placeholder="$t('search')" />
+    </div>
+    <div>
+    <select class="form-select" v-model="$i18n.locale">
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </div>
     <div class="top-menu__info">
       <span>{{ currentTime }}</span>
-      <span class="session-counter">Active sessions: {{ activeSessions }}</span>
+      <span class="session-counter">{{ $t('sessions') }}: {{ activeSessions }}</span>
     </div>
-  </div>
+  </header>
 </template>
 
 <style scoped>
 .top-menu {
   display: flex;
-  justify-content: flex-end;
-  padding: 10px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  margin: 15px;
+  background-color: #fff;
+  align-items: center;
+  margin: 0 auto;
 }
 
+.top-menu__logotype {
+  font-size: 20px;
+}
+
+.top-menu__input {
+  display: flex;
+  align-items: center;
+}
+.top-menu__input-item {
+  background-color: #ebe9e9;
+  border: none;
+  border-radius: 4px;
+  padding-left: 10px;
+  font-size: 12px;
+  height: 24px;
+  width: 250px;
+}
+.top-menu__input-item:focus {
+  outline: none;
+}
 .top-menu__info {
   display: flex;
   gap: 20px;
   font-size: 14px;
-  color: #333;
+  color: #666;
 }
 
 .session-counter {

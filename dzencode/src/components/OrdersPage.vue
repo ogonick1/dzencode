@@ -13,14 +13,14 @@ const selectedOrder = computed(() => store.getters.selectedOrder)
 
 <template>
   <main class="main-content">
-    <div class="wrapper">
+    <div class="main-content__wrapper">
       <img src="../assets/icon/plus-circle-fill.svg" alt="icon-circle" />
-      <h2>Orders / {{ orders.length }}</h2>
+      <h2>{{ $t('orders' , {count: orders.length})  }}</h2>
     </div>
 
-    <div class="orders-wrapper">
-      <div :class="[selectedOrder ? 'orders-list-wrapper-short' : 'orders-list-wrapper']">
-        <ul class="orders-list">
+    <div class="main-content__orders">
+      <div :class="[selectedOrder ? 'main-content__orders-list-wrapper--short' : 'main-content__orders-list-wrapper']">
+        <ul class="main-content__orders-list">
           <OrderItem :orders="orders" :selectedOrder="selectedOrder" />
         </ul>
       </div>
@@ -30,9 +30,10 @@ const selectedOrder = computed(() => store.getters.selectedOrder)
     </div>
     <transition name="slide" mode="out-in">
       <DeleteModal />
-  </transition>
+    </transition>
   </main>
 </template>
+
 <style scoped>
 .slide-enter-active {
   transition: transform 0.5s ease;
@@ -46,33 +47,42 @@ const selectedOrder = computed(() => store.getters.selectedOrder)
 .slide-leave-to {
   transform: translateX(100%);
 }
-.wrapper {
+
+.main-content__wrapper {
   display: flex;
   align-items: center;
   gap: 15px;
   margin-bottom: 15px;
 }
-.wrapper img {
+
+.main-content__wrapper img {
   transition: transform 0.3s ease;
 }
-.wrapper h2 {
-  margin: 0;
-}
-.wrapper img:hover {
+
+.main-content__wrapper img:hover {
   transform: scale(1.1);
 }
-.orders-list {
+
+.main-content__wrapper h2 {
+  margin: 0;
+}
+
+.main-content__orders {
+  display: flex;
+}
+
+.main-content__orders-list {
   border-radius: 6px;
   padding-left: 0;
   width: 100%;
 }
-.orders-list-wrapper {
+
+.main-content__orders-list-wrapper {
   width: 100%;
 }
-.orders-list-wrapper-short {
+
+.main-content__orders-list-wrapper--short {
   width: 25%;
 }
-.orders-wrapper {
-  display: flex;
-}
+
 </style>

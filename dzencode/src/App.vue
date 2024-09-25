@@ -2,13 +2,11 @@
 import { RouterView } from 'vue-router'
 import NavigationMenu from './components/NavigationMenu.vue'
 import TopMenu from './components/TopMenu.vue'
+
 </script>
 
 <template>
-  <header>
-    <TopMenu />
-  </header>
-
+  <TopMenu />
   <div class="layout">
     <aside class="navigation">
       <NavigationMenu />

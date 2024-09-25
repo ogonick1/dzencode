@@ -1,0 +1,25 @@
+{
+  "orders": "Приходы / {count}",
+  "products": "Продукты / {count}",
+  "search" : "Поиск",
+  "order": "Приходы",
+  "product": "Продукты",
+  "sessions": "Активные сессии",
+  "start": "С:",
+  "end" : "По:",
+  "type": "Тип",
+  "types": "Все",
+  "modalText" : "Удалить этот приход?",
+  "delete": "Удалить",
+  "cancel": "Отмена",
+  "uah": "ГРН",
+  "login": "Вход",
+  "register": "Регистрация",
+  "email": "Емейл",
+  "password": "Пароль",
+  "username": "Логин",
+  "noAccount": "Нет аккаунта?",
+  "alreadyHaveAccount": "Уже есть аккаунт?",
+  "logout": "Выйти"
+
+}
