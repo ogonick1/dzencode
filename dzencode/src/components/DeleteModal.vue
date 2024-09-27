@@ -15,17 +15,17 @@ const cancelDelete = () => store.commit('cancelDelete')
       <div class="modal__close-btn" @click="cancelDelete()">
         <img src="../assets/icon/x-lg.svg" alt="x-circle" />
       </div>
-      <p>Are you sure you want to delete this order?</p>
+      <p>{{ $t('modalText') }}</p>
       <p class="modal__title">
         <span>{{ deleteConfirmation.title }}</span>
         <br />
         <span>{{ deleteConfirmation.date }}</span>
       </p>
       <div class="modal__button-group">
-        <button class="modal__cancel-btn" @click="cancelDelete()">Відміна</button>
+        <button class="modal__cancel-btn" @click="cancelDelete()">{{ $t('cancel') }}</button>
         <button class="modal__delete-btn" @click="deleteOrder(deleteConfirmation.id)">
           <img src="../assets//icon/delete-red.svg" alt="" />
-          Видалити
+          {{ $t('delete') }}
         </button>
       </div>
     </div>

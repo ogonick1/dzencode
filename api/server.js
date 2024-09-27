@@ -39,7 +39,6 @@ io.on('connection', (socket) => {
     activeSessions--;
     io.emit('activeSessions', activeSessions);
 
-    console.log('Отключение клиента:', activeSessions);
   });
 });
 

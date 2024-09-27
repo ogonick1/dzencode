@@ -1,15 +1,17 @@
 {
   "orders": "Orders / {count}",
   "products": "Products / {count}",
-  "search" : "Search",
+  "search": "Search",
   "order": "Orders",
   "product": "Products",
+  "addProduct": "Add products",
+  "protect": "Chart",
   "sessions": "Active sessions",
   "start": "Start:",
-  "end" : "End:",
+  "end": "End:",
   "type": "Type",
   "types": "All",
-  "modalText" : "Are you sure you want to delete this order?",
+  "modalText": "Are you sure you want to delete this order?",
   "delete": "Delete",
   "cancel": "Cancel",
   "uah": "UAH",
@@ -20,5 +22,11 @@
   "username": "Username",
   "noAccount": "Don't have an account?",
   "alreadyHaveAccount": "Already have an account?",
-  "logout": "Logout"
+  "logout": "Logout",
+  "totalOrderValue": "Total Order Value (UAH)",
+  "required": "Required field",
+  "correctEmail": "Please enter a valid email address",
+  "fieldLong": "Field long min {min} max {max} symbol",
+  "chart": "Order chart",
+  "map": "Map"
 }

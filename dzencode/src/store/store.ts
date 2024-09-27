@@ -471,7 +471,7 @@ export const store = createStore<State>({
   state,
   mutations,
   getters,
-  modules:{
-    auth,
+  modules: {
+    auth
   }
 })

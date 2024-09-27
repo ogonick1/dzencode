@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n';
+import { createI18n } from 'vue-i18n'
 //@ts-ignore
 import en from './locales/en.json'
 //@ts-ignore
@@ -10,7 +10,7 @@ const i18n = createI18n({
   messages: {
     en,
     ru
-  },
-});
+  }
+})
 
-export default i18n;
+export default i18n

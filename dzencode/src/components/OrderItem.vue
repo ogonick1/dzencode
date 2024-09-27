@@ -60,8 +60,7 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
         <img src="../assets/icon/list-task.svg" alt="list-icon" />
       </div>
       <div class="order__products-length">
-        <span>{{ order.products.length }}</span
-        ><br />
+        <span>{{ order.products.length }}</span>
         <span>{{ $t('product') }}</span>
       </div>
     </div>
@@ -77,7 +76,11 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
       <img src="../assets/icon/delete.svg" alt="delete-icon" />
     </button>
     <div class="order__selected-button" v-if="selectedOrder === order">
-      <img src="../assets//icon/chevron-compact-right.svg" alt="chevron-compact-right" />
+      <img
+        class="order__selected-button-img"
+        src="../assets//icon/chevron-compact-right.svg"
+        alt="chevron-compact-right"
+      />
     </div>
   </li>
 </template>
@@ -100,8 +103,8 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
 
 .order--short {
   justify-content: start;
-  gap: 20px;
-  width: 220px;
+  gap: 10px;
+  width: 230px;
 }
 
 .order:hover {
@@ -114,7 +117,7 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 250px;
+  width: 17vw;
   text-decoration: underline;
 }
 
@@ -123,6 +126,11 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
   gap: 12px;
   align-items: center;
   justify-content: center;
+}
+
+.order__products-length {
+  display: flex;
+  flex-direction: column;
 }
 
 .order__products-icon {
@@ -144,7 +152,7 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
   font-weight: bold;
 }
 
-.order__products-length span:nth-child(3) {
+.order__products-length span:nth-child(2) {
   font-size: 0.8rem;
 }
 
@@ -203,5 +211,20 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
 
 .order__delete-btn:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 425px) {
+  .order {
+    padding: 5px;
+  }
+  .order__products-icon {
+    display: none;
+  }
+  .order__products-length span:nth-child(2) {
+    display: none;
+  }
+  .order__selected-button-img {
+    transform: rotate(90deg);
+  }
 }
 </style>

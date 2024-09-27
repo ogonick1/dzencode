@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { key } from '../store/store'
-import DeleteModal from './DeleteModal.vue'
-import OrderDetails from './OrderDetails.vue'
-import OrderItem from './OrderItem.vue'
+import DeleteModal from '../components/DeleteModal.vue'
+import OrderDetails from '../components/OrderDetails.vue'
+import OrderItem from '../components/OrderItem.vue'
 
 const store = useStore(key)
 const orders = computed(() => store.getters.orders)
@@ -15,11 +15,17 @@ const selectedOrder = computed(() => store.getters.selectedOrder)
   <main class="main-content">
     <div class="main-content__wrapper">
       <img src="../assets/icon/plus-circle-fill.svg" alt="icon-circle" />
-      <h2>{{ $t('orders' , {count: orders.length})  }}</h2>
+      <h2>{{ $t('orders', { count: orders.length }) }}</h2>
     </div>
 
     <div class="main-content__orders">
-      <div :class="[selectedOrder ? 'main-content__orders-list-wrapper--short' : 'main-content__orders-list-wrapper']">
+      <div
+        :class="[
+          selectedOrder
+            ? 'main-content__orders-list-wrapper--short'
+            : 'main-content__orders-list-wrapper'
+        ]"
+      >
         <ul class="main-content__orders-list">
           <OrderItem :orders="orders" :selectedOrder="selectedOrder" />
         </ul>
@@ -69,6 +75,8 @@ const selectedOrder = computed(() => store.getters.selectedOrder)
 
 .main-content__orders {
   display: flex;
+  gap: 20px;
+  justify-content: space-between;
 }
 
 .main-content__orders-list {
@@ -85,4 +93,11 @@ const selectedOrder = computed(() => store.getters.selectedOrder)
   width: 25%;
 }
 
+@media (max-width: 425px) {
+  .main-content__orders {
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+  }
+}
 </style>

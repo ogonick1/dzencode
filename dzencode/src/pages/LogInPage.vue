@@ -3,24 +3,24 @@ import { nextTick, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { key } from '../store/store'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const store = useStore(key)
-
 const email = ref('test@email.com')
 const password = ref('123456')
 const errors = ref({
   email: '',
   password: ''
 })
-
 const router = useRouter()
 
 const validateEmail = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!email.value) {
-    errors.value.email = 'Email is required'
+    errors.value.email = t('required')
   } else if (!emailRegex.test(email.value)) {
-    errors.value.email = 'Please enter a valid email address'
+    errors.value.email = t('correctEmail')
   } else {
     errors.value.email = ''
   }
@@ -28,9 +28,9 @@ const validateEmail = () => {
 
 const validatePassword = () => {
   if (!password.value) {
-    errors.value.password = 'Password is required'
+    errors.value.password = t('required')
   } else if (password.value.length < 6) {
-    errors.value.password = 'Password must be at least 6 characters long'
+    errors.value.password = t('fieldLong', { min: 6, max: 12 })
   } else {
     errors.value.password = ''
   }
@@ -69,7 +69,7 @@ const login = () => {
             <label for="email">{{ $t('email') }}</label>
             <input
               type="email"
-              v-model="email"
+              v-model.trim="email"
               class="form-control"
               id="email"
               required
@@ -83,7 +83,7 @@ const login = () => {
             <label for="password">{{ $t('password') }}</label>
             <input
               type="password"
-              v-model="password"
+              v-model.trim="password"
               class="form-control"
               id="password"
               required
@@ -101,6 +101,9 @@ const login = () => {
           <p>
             {{ $t('noAccount') }} <router-link to="/register">{{ $t('register') }}</router-link>
           </p>
+          <p>example for test</p>
+          <p>test@email.com</p>
+          <p>123456</p>
         </div>
       </div>
     </div>

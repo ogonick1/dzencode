@@ -2,7 +2,6 @@
 import { RouterView } from 'vue-router'
 import NavigationMenu from './components/NavigationMenu.vue'
 import TopMenu from './components/TopMenu.vue'
-
 </script>
 
 <template>
@@ -38,6 +37,17 @@ import TopMenu from './components/TopMenu.vue'
   background-color: #f8f6f6;
 }
 
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .navigation {
+    width: 100%;
+  }
+  .content {
+    padding: 10px;
+  }
+}
 /* Анімація слайду */
 .slide-enter-active,
 .slide-leave-active {

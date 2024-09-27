@@ -100,7 +100,8 @@ function formatDate(date: string | number | Date, format: 'long' | 'short') {
   flex-direction: column;
 }
 
-.products__item-guarantee-start {
+.products__item-guarantee-start,
+.products__item-guarantee-end {
   font-size: 0.8rem;
   color: #666;
   display: flex;
@@ -108,12 +109,6 @@ function formatDate(date: string | number | Date, format: 'long' | 'short') {
   justify-content: space-around;
 }
 
-.products__item-guarantee-end {
-  display: flex;
-  justify-content: space-around;
-  font-size: 0.8rem;
-  color: #666;
-}
 .products__item-guarantee-start span:nth-last-child(1),
 .products__item-guarantee-end span:nth-last-child(1) {
   font-weight: bold;
@@ -136,7 +131,7 @@ function formatDate(date: string | number | Date, format: 'long' | 'short') {
   }
   .products__item {
     flex-direction: column;
-    text-align: left;
+    text-align: center;
   }
 }
 </style>

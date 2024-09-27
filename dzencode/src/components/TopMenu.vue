@@ -33,11 +33,11 @@ onUnmounted(() => {
       <input class="top-menu__input-item" type="text" :placeholder="$t('search')" />
     </div>
     <div>
-    <select class="form-select" v-model="$i18n.locale">
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-    </select>
-  </div>
+      <select class="form-select" v-model="$i18n.locale">
+        <option value="en">English</option>
+        <option value="ru">Русский</option>
+      </select>
+    </div>
     <div class="top-menu__info">
       <span>{{ currentTime }}</span>
       <span class="session-counter">{{ $t('sessions') }}: {{ activeSessions }}</span>
@@ -58,11 +58,17 @@ onUnmounted(() => {
 .top-menu__logotype {
   font-size: 20px;
 }
+@media (max-width: 425px) {
+  .top-menu__logotype {
+    display: none;
+  }
+}
 
 .top-menu__input {
   display: flex;
   align-items: center;
 }
+
 .top-menu__input-item {
   background-color: #ebe9e9;
   border: none;
@@ -80,6 +86,23 @@ onUnmounted(() => {
   gap: 20px;
   font-size: 14px;
   color: #666;
+}
+@media (max-width: 768px) {
+  .top-menu__input {
+    display: none;
+  }
+  .top-menu__logotype {
+    font-size: 1rem;
+  }
+  .top-menu__info span {
+    width: 15vw;
+  }
+}
+
+@media (max-width: 425px) {
+  .top-menu__info {
+    font-size: 10px;
+  }
 }
 
 .session-counter {

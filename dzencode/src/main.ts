@@ -1,14 +1,15 @@
 import './assets/main.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'leaflet/dist/leaflet.css'
+import 'bootstrap'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import {store, key} from './store/store'
+import { store, key } from './store/store'
 import i18n from './i18n'
-import Toast from "vue3-toastify";
-import "vue3-toastify/dist/index.css";
+import Toast from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
 
 const app = createApp(App)
 

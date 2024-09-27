@@ -62,7 +62,7 @@ function setPlaceholder(event: Event) {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  width: 70%;
+  width: 50vw;
   border-radius: 6px;
   position: relative;
   border: 1px solid #ddd;

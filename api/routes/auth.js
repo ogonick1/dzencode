@@ -4,22 +4,18 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const router = express.Router();
 
-// Регистрация
 router.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    // Перевірка, чи користувач вже існує
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'User already exists' });
 
     const existingUserName = await User.findOne({ username });
     if (existingUserName) return res.status(400).json({ message: 'UserName already exists' });
 
-    // Хешування пароля
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Створення нового користувача
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '11h' });
@@ -35,22 +31,17 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Авторизація
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Перевірка користувача
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: 'User not found' });
 
-    // Перевірка пароля
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-    // Створення JWT токена
      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '11h' });
-
 
      res.json({
       token,
@@ -61,12 +52,10 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Захищений роут (приклад)
 router.get('/protected', verifyToken, (req, res) => {
   res.json({ message: 'This is a protected route' });
 });
 
-// Middleware для перевірки JWT токена
 function verifyToken(req, res, next) {
   const token = req.headers['authorization'];
   if (!token) return res.status(401).json({ message: 'Access denied' });
