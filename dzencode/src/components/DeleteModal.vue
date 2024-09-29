@@ -32,43 +32,41 @@ const cancelDelete = () => store.commit('cancelDelete')
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #00000099;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.modal__content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  background-color: white;
-  border-radius: 8px;
-  text-align: center;
-  width: 500px;
-  height: 200px;
-}
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    text-align: center;
+    width: 500px;
+    height: 200px;
+  }
 
-.modal__title {
+  &__title {
   font-weight: bold;
   margin-bottom: 20px;
-}
-.modal__title span:nth-last-child(1) {
-  font-size: 0.8rem;
-  font-weight: 100;
-}
+   & span:nth-last-child(1) {
+    font-size: 0.8rem;
+    font-weight: 100;
+    }
+  }
 
-.modal__close-btn {
+  &__close-btn {
   position: absolute;
-  background-color: #666;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,22 +74,21 @@ const cancelDelete = () => store.commit('cancelDelete')
   cursor: pointer;
   width: 30px;
   height: 30px;
-  box-shadow: 1px 2px 2px #666;
+  box-shadow: 1px 2px 2px var(--gray-color);
   transform: translate(50%, -50%);
-  background-color: #fff;
+  background-color: var(--white-color);
   top: 0;
   right: 0;
   transition-duration: 0.4s;
-}
-
-.modal__close-btn:hover {
+  &:hover {
   box-shadow:
-    0 8px 16px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+    0 8px 16px 0 #00000033,
+    0 6px 20px 0 #00000030;
+    }
+  }
 
-.modal__button-group {
-  background-color: #01b201;
+  &__button-group {
+  background-color: var(--green-color);
   height: 40%;
   display: flex;
   justify-content: end;
@@ -99,13 +96,13 @@ const cancelDelete = () => store.commit('cancelDelete')
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   gap: 5px;
-}
+  }
 
-.modal__delete-btn {
+  &__delete-btn {
   display: flex;
   gap: 5px;
-  background-color: #ffffff;
-  color: #ff0000;
+  background-color: var(--white-color);
+  color: var(--red-color);
   padding: 10px 20px;
   border: none;
   border-radius: 25px;
@@ -115,17 +112,16 @@ const cancelDelete = () => store.commit('cancelDelete')
   display: flex;
   align-items: center;
   transition-duration: 0.4s;
-}
-
-.modal__delete-btn:hover {
+  &:hover {
   box-shadow:
-    0 8px 16px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+    0 8px 16px 0 #00000033,
+    0 6px 20px 0 #00000030;
+    }
+  }
 
-.modal__cancel-btn {
+  &__cancel-btn {
   padding: 10px 20px;
-  color: white;
+  color: var(--white-color);
   background-color: inherit;
   border: none;
   cursor: pointer;
@@ -133,9 +129,12 @@ const cancelDelete = () => store.commit('cancelDelete')
   display: flex;
   align-items: center;
   border-radius: 25px;
+  transition-duration: 0.4s;
+  &:hover {
+  box-shadow: 0 8px 16px 0 #00000033;
+    }
+  }
+
 }
 
-.modal__cancel-btn:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
 </style>

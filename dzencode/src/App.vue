@@ -48,7 +48,7 @@ import TopMenu from './components/TopMenu.vue'
     padding: 10px;
   }
 }
-/* Анімація слайду */
+
 .slide-enter-active,
 .slide-leave-active {
   transition: transform 0.5s ease;

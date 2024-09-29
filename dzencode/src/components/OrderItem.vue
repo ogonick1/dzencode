@@ -10,11 +10,33 @@ defineProps<{
 }>()
 
 const store = useStore(key)
-const calculateTotalUAH = store.getters.calculateTotalUAH
-const calculateTotalUSD = store.getters.calculateTotalUSD
 
 const selectOrder = (orderId) => store.commit('selectOrder', orderId)
 const confirmDelete = (order) => store.commit('confirmDelete', order)
+
+const totalPriceInUSD = (order: Order) => {
+  let totalUSD = 0
+  if (order.products && order.products.length > 0) {
+    order.products.forEach((product) => {
+      const usdPrice = product.price.find((p) => p.symbol === 'USD')
+      if (usdPrice) totalUSD += usdPrice.value
+    })
+  }
+
+  return Number.isInteger(totalUSD) ? `${totalUSD} $` : `${totalUSD.toFixed(2)} $`
+}
+
+const totalPriceInUAH = (order: Order) => {
+  let totalUAH = 0
+  if (order.products && order.products.length > 0) {
+    order.products.forEach((product) => {
+      const uahPrice = product.price.find((p) => p.symbol === 'UAH')
+      if (uahPrice) totalUAH += uahPrice.value
+    })
+  }
+
+  return Number.isInteger(totalUAH) ? `${totalUAH} UAH` : `${totalUAH.toFixed(2)} UAH`
+}
 
 function formatDate(dateString: string, format: 'short' | 'long'): string {
   const date = new Date(dateString)
@@ -69,8 +91,8 @@ function formatDate(dateString: string, format: 'short' | 'long'): string {
       <span class="order__date-long">{{ formatDate(order.date, 'long') }}</span>
     </div>
     <div v-if="!selectedOrder" class="order__total">
-      <span class="order__total-usd">{{ calculateTotalUSD(order.products) }}</span>
-      <span>{{ calculateTotalUAH(order.products) }}</span>
+      <span class="order__total-usd">{{ totalPriceInUSD(order) }}</span>
+      <span>{{ totalPriceInUAH(order) }}</span>
     </div>
     <button v-if="!selectedOrder" class="order__delete-btn" @click.stop="confirmDelete(order)">
       <img src="../assets/icon/delete.svg" alt="delete-icon" />

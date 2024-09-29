@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" setup>
 import {
   Chart as ChartJS,
   Title,
@@ -16,49 +16,36 @@ import { useI18n } from 'vue-i18n'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-export default {
-  name: 'OrderChart',
-  components: {
-    Bar
-  },
-  setup() {
-    const store = useStore(key)
-    const { t } = useI18n()
+const store = useStore(key)
+const { t } = useI18n()
 
-    const chartData = computed(() => {
-      const labels = store.getters.orders.map((order) => order.title)
-      const data = store.getters.orders.map((order) => {
-        return order.products.reduce((total, product) => {
-          const uahPrice = product.price.find((p) => p.symbol === 'UAH')
-          return total + (uahPrice ? uahPrice.value : 0)
-        }, 0)
-      })
+const chartData = computed(() => {
+  const labels = store.getters.orders.map((order) => order.title)
+  const data = store.getters.orders.map((order) => {
+    return order.products.reduce((total, product) => {
+      const uahPrice = product.price.find((p) => p.symbol === 'UAH')
+      return total + (uahPrice ? uahPrice.value : 0)
+    }, 0)
+  })
 
-      return {
-        labels,
-        datasets: [
-          {
-            label: t('totalOrderValue'),
-            backgroundColor: '#2E8B57',
-            borderColor: '#388e3c',
-            borderWidth: 2,
-            hoverBackgroundColor: 'rgba(76, 175, 80, 0.8)',
-            data
-          }
-        ]
+  return {
+    labels,
+    datasets: [
+      {
+        label: t('totalOrderValue'),
+        backgroundColor: '#2E8B57',
+        borderColor: '#388e3c',
+        borderWidth: 2,
+        hoverBackgroundColor: 'rgba(76, 175, 80, 0.8)',
+        data
       }
-    })
-
-    const options = {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-
-    return {
-      chartData,
-      options
-    }
+    ]
   }
+})
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: false
 }
 </script>
 

@@ -52,21 +52,21 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/protected', verifyToken, (req, res) => {
-  res.json({ message: 'This is a protected route' });
-});
+//router.get('/protected', verifyToken, (req, res) => {
+//  res.json({ message: 'This is a protected route' });
+//});
 
-function verifyToken(req, res, next) {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(401).json({ message: 'Access denied' });
+//function verifyToken(req, res, next) {
+//  const token = req.headers['authorization'];
+//  if (!token) return res.status(401).json({ message: 'Access denied' });
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-    res.status(401).json({ message: 'Invalid token' });
-  }
-}
+//  try {
+//    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//    req.user = decoded;
+//    next();
+//  } catch (error) {
+//    res.status(401).json({ message: 'Invalid token' });
+//  }
+//}
 
 module.exports = router;

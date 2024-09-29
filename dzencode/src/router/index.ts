@@ -4,8 +4,7 @@ import RegistrationPage from '@/pages/RegistrationPage.vue'
 import { store } from '@/store/store'
 
 const router = createRouter({
-  //@ts-ignore
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',

@@ -1,8 +1,10 @@
+
 // store/modules/auth.js
+import { config } from '@/config'
 import axios from 'axios'
 import { toast } from 'vue3-toastify'
 
-const API_URL = 'http://localhost:5000/api/auth' // Базовий URL для запитів
+const authUrl = `${config.API_URL}/api/auth`
 
 const state = {
   token: localStorage.getItem('token') || '',
@@ -10,19 +12,26 @@ const state = {
   status: ''
 }
 
+export enum MutationsName {
+  AUTH_REQUEST = 'AUTH_REQUEST',
+  AUTH_SUCCESS = 'AUTH_SUCCESS',
+  AUTH_ERROR = 'AUTH_ERROR',
+  LOGOUT = 'LOGOUT'
+}
+
 const mutations = {
-  AUTH_REQUEST(state) {
+  [MutationsName.AUTH_REQUEST](state) {
     state.status = 'loading'
   },
-  AUTH_SUCCESS(state, { token, user }) {
+  [MutationsName.AUTH_SUCCESS](state, { token, user }) {
     state.status = 'success'
     state.token = token
     state.user = user
   },
-  AUTH_ERROR(state) {
+  [MutationsName.AUTH_ERROR](state) {
     state.status = 'error'
   },
-  LOGOUT(state) {
+  [MutationsName.LOGOUT](state) {
     state.status = ''
     state.token = ''
     state.user = null
@@ -32,9 +41,9 @@ const mutations = {
 const actions = {
   login({ commit }, user) {
     return new Promise((resolve, reject) => {
-      commit('AUTH_REQUEST')
+      commit(MutationsName.AUTH_REQUEST)
       axios({
-        url: `${API_URL}/login`, // Використовуйте повний шлях
+        url: `${authUrl}/login`, // Використовуйте повний шлях
         data: user,
         method: 'POST'
       })
@@ -46,7 +55,7 @@ const actions = {
           localStorage.setItem('user', JSON.stringify(userData)) // Зберігаємо реальні дані користувача
 
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-          commit('AUTH_SUCCESS', { token, user: userData })
+          commit(MutationsName.AUTH_SUCCESS, { token, user: userData })
           toast.success('Login successful!', {
             position: 'top-right',
             autoClose: 3000
@@ -54,7 +63,7 @@ const actions = {
           resolve(resp)
         })
         .catch((err) => {
-          commit('AUTH_ERROR')
+          commit(MutationsName.AUTH_ERROR)
           localStorage.removeItem('token')
           localStorage.removeItem('user')
           toast.error(`Login failed: ${err.response.data.message}`, {
@@ -67,9 +76,9 @@ const actions = {
   },
   register({ commit }, user) {
     return new Promise((resolve, reject) => {
-      commit('AUTH_REQUEST')
+      commit(MutationsName.AUTH_REQUEST)
       axios({
-        url: `${API_URL}/register`, // Використовуйте повний шлях
+        url: `${authUrl}/register`, // Використовуйте повний шлях
         data: user,
         method: 'POST'
       })
@@ -81,7 +90,7 @@ const actions = {
           localStorage.setItem('user', JSON.stringify(userData)) // Зберігаємо реальні дані користувача
 
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-          commit('AUTH_SUCCESS', { token, user: userData })
+          commit(MutationsName.AUTH_SUCCESS, { token, user: userData })
           toast.success('Registration successful!', {
             position: 'top-right',
             autoClose: 3000
@@ -89,7 +98,7 @@ const actions = {
           resolve(resp)
         })
         .catch((err) => {
-          commit('AUTH_ERROR')
+          commit(MutationsName.AUTH_ERROR)
           localStorage.removeItem('token')
           localStorage.removeItem('user')
           toast.error(`Registration failed: ${err.response.data.message}`, {
@@ -102,7 +111,7 @@ const actions = {
   },
   logout({ commit }) {
     return new Promise((resolve) => {
-      commit('LOGOUT')
+      commit(MutationsName.LOGOUT)
       localStorage.removeItem('token')
       localStorage.removeItem('user')
       delete axios.defaults.headers.common['Authorization']
@@ -110,7 +119,7 @@ const actions = {
         position: 'top-right',
         autoClose: 3000
       })
-      resolve()
+      resolve(null)
     })
   }
 }

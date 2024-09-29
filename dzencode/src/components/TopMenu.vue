@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { io } from 'socket.io-client'
+import { config } from '@/config'
 
 const currentTime = ref('')
 
@@ -10,7 +11,7 @@ const updateTime = () => {
   currentTime.value = new Date().toLocaleString()
 }
 
-const socket = io('http://localhost:3000')
+const socket = io(config.SOCKET_URL)
 
 onMounted(() => {
   updateTime()
