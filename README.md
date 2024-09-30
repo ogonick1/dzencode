@@ -15,6 +15,7 @@ The project consists of two main directories:
 api: This contains the back-end code (Node.js API).
 dzencode: This contains the front-end code (Vue application).
 Project Setup
+Node.js and Docker must be installed on the computer beforehand
 
 1. Clone the repository:
 git clone https://github.com/ogonick1/dzencode
@@ -33,7 +34,8 @@ docker-compose up
 
 4. Set up the Front-End (Client):
 Open a new terminal:
-cd dzencode
+cd dzencode 
+or(cd dzencode/dzencode)
 npm install
 
 5. Running the Front-End in Development Mode:
