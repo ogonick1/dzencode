@@ -2,13 +2,13 @@
 import { useStore } from 'vuex'
 import { key } from '../store/store'
 import { computed } from 'vue'
+import placeholderImage from '../assets/img/image.svg'
 
 const store = useStore(key)
 const closeDetails = () => store.commit('closeDetails')
 const deleteProductFromOrder = (orderId, productId) =>
   store.commit('deleteProductFromOrder', { orderId, productId })
 const selectedOrder = computed(() => store.getters.selectedOrder)
-const placeholderImage = '/src/assets/img/image.svg'
 function setPlaceholder(event: Event) {
   const target = event.target as HTMLImageElement
   target.src = placeholderImage
@@ -30,7 +30,7 @@ function setPlaceholder(event: Event) {
         <div class="order-details__product-img-wrapper">
           <img
             class="order-details__product-img"
-            :src="product.photo ? product.photo : '/src/assets/img/image.svg'"
+            :src="product.photo ? product.photo : placeholderImage"
             @error="setPlaceholder"
             alt="product-img"
           />

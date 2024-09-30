@@ -1,3 +1,4 @@
+import photo1 from '../assets/img/photo1.jpg'
 export const ordersMock = [
   {
     id: 1,
@@ -9,7 +10,7 @@ export const ordersMock = [
         id: 1,
         serialNumber: 1234,
         isNew: 1,
-        photo: '/src/assets/img/photo1.jpg',
+        photo: photo1,
         title: 'Product 1',
         type: 'Monitors',
         specification: 'Specification 1',
@@ -55,7 +56,7 @@ export const ordersMock = [
         id: 1,
         serialNumber: 1234,
         isNew: 1,
-        photo: '../assets/img/photo1.jpg',
+        photo: photo1,
         title: 'Product 1',
         type: 'Monitors',
         specification: 'Specification 1',
@@ -74,7 +75,7 @@ export const ordersMock = [
         id: 2,
         serialNumber: 1234,
         isNew: 1,
-        photo: '/src/assets/img/photo1.jpg',
+        photo: photo1,
         title: 'Product 2',
         type: 'Monitors',
         specification: 'Specification 1',
